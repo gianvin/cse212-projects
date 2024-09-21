@@ -25,13 +25,7 @@ public static class Arrays
         // return the result
         return multiples; // replace this return statement with your own
     }
-    // call the static method with number = 3 and length = 5
-    public static void Main(string[] args)
-    {
-        double[] result = MultiplesOf(3, 5);
-        // Output: 3. 6. 9. 12. 15
-        Console.WriteLine(string.Join(", ", result));
-    }
+
     /// <summary>
     /// Rotate the 'data' to the right by the 'amount'.  For example, if the data is 
     /// List<int>{1, 2, 3, 4, 5, 6, 7, 8, 9} and an amount is 3 then the list after the function runs should be 
@@ -67,4 +61,18 @@ public static class Arrays
         data.AddRange(set1);
         data.AddRange(set2);
     }
+    // call the static method for Part 1 and 2 problem
+    public static void Main(string[] args)
+    {
+        double[] result = MultiplesOf(3, 5);
+        // Output: 3. 6. 9. 12. 15
+        Console.WriteLine(string.Join(", ", result));
+        List<int> data = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        RotateListRight(data, 5);
+        // Output: 6, 7, 8, 9, 1, 2, 3, 4, 5
+        Console.WriteLine(string.Join(", ", data));
+    }
+
 }
+
+
