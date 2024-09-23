@@ -67,6 +67,7 @@ public static class Arrays
         double[] result = MultiplesOf(3, 5);
         // Output: 3. 6. 9. 12. 15
         Console.WriteLine(string.Join(", ", result));
+        
         List<int> data = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         RotateListRight(data, 5);
         // Output: 6, 7, 8, 9, 1, 2, 3, 4, 5
