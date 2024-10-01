@@ -20,23 +20,29 @@
 
         Console.WriteLine($"Number of items in the collection: {data.Length}");
         Console.WriteLine($"Number of duplicates : {CountDuplicates(data)}");
+        Console.WriteLine($"Number of Duplicates (alternate): {CountDuplicatesAlternate(data)}");
     }
 
     private static int CountDuplicates(int[] data)
     {
         // Add code here.
-        Dictionary<int, int> frequency = new Dictionary<int, int>();
-        foreach (int num in data)
+        var unique = new HashSet<int>();
+
+        var duplicates = 0;
+        foreach (var x in data)
         {
-            if (frequency.ContainsKey(num))
-            {
-                frequency[num]++;
-            }
+            if (unique.Contains(x))
+                duplicates++;
+
             else
-            {
-                frequency[num] = 1;
-            }
+                unique.Add(x);
         }
-        return 0;
+        return duplicates;
+    }
+
+    private static int CountDuplicatesAlternate(int[] data)
+    {
+        var unique = new HashSet<int>(data);
+        return data.Length = unique.Count;
     }
 }
