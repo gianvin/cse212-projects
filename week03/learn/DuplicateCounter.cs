@@ -25,6 +25,18 @@
     private static int CountDuplicates(int[] data)
     {
         // Add code here.
+        Dictionary<int, int> frequency = new Dictionary<int, int>();
+        foreach (int num in data)
+        {
+            if (frequency.ContainsKey(num))
+            {
+                frequency[num]++;
+            }
+            else
+            {
+                frequency[num] = 1;
+            }
+        }
         return 0;
     }
 }
