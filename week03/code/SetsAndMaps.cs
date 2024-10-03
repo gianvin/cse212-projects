@@ -1,7 +1,10 @@
+using System.ComponentModel;
 using System.Text.Json;
 
 public static class SetsAndMaps
 {
+    private static string reversedWord;
+
     /// <summary>
     /// The words parameter contains a list of two character 
     /// words (lower case, no duplicates). Using sets, find an O(n) 
@@ -22,9 +25,47 @@ public static class SetsAndMaps
     public static string[] FindPairs(string[] words)
     {
         // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        //HashSet as store the words
+        HashSet<string> wordSet = new HashSet<string>();
+
+        // List to store the symmetric pairs
+        List<string> pairs = new List<string>();
+        //Iterate through each word in the input array
+        foreach (string word in words)
+        {
+            //Reverse the current word
+            char[] charArray = word.ToCharArray();
+            Array.Reverse(charArray);
+            // Check if the reversed word is already in the set
+            if (wordSet.Contains(reversedWord))
+            {
+                pairs.Add(word + "&" + reversedWord);
+                //Remove the reversed word from the set to avoid duplicates
+                wordSet.Remove(reversedWord);
+            }
+            else
+            {
+                //if not found, add the current word to the set
+                wordSet.Add(word)
+;
+            }
+        }
+        // return the pairs as an array of strings
+        return pairs.ToArray();
     }
 
+    public static void Main(string[] args)
+    {
+        string[] words = { "am", "at", "ma", "if", "fi", "aa" };
+        //Find the symmetric pairs
+        string[] result = FindPairs(words);
+        //Print the result
+        foreach (string pair in result) ;
+        {
+            Console.WriteLine(pairs);
+        }
+
+    }
     /// <summary>
     /// Read a census file and summarize the degrees (education)
     /// earned by those contained in the file.  The summary
