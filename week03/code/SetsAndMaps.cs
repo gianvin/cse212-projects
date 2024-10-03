@@ -60,9 +60,9 @@ public static class SetsAndMaps
         //Find the symmetric pairs
         string[] result = FindPairs(words);
         //Print the result
-        foreach (string pair in result) ;
+        foreach (string pair in result)
         {
-            Console.WriteLine(pairs);
+            Console.WriteLine(pair);
         }
 
     }
