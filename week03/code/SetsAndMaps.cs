@@ -136,8 +136,36 @@ public static class SetsAndMaps
     public static bool IsAnagram(string word1, string word2)
     {
         // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+
+
+        if (word1.Length != word2.Length)
+        {
+            return false;
+        }
+        // convert the strings to character arrays
+
+        char[] word1Array = word1.ToLower().ToCharArray();
+        char[] word2Array = word2.ToLower().ToCharArray();
+
+        // Sort the character arrays
+        Array.Sort(word1Array);
+        Array.Sort(word2Array);
+
+        //compare sorted arrays
+        for (int i = 0; i < word1Array.Length; i++)
+        {
+            if (word1Array[i] != word2Array[i])
+            {
+                return false; // if there is different caharacter, not an anagram
+            }
+        }
+
+        return true; // the charcters match, the words are anagram
     }
+
+
+
+
 
     /// <summary>
     /// This function will read JSON (Javascript Object Notation) data from the 
