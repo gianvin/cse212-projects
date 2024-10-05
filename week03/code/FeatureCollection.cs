@@ -20,7 +20,7 @@ public class FeatureCollection
 
             //Deserialize the JSON response
 
-            var earthquakeData = await response.Content.ReadFromJsonAsync<EarthquakeData>();
+            var earthquakeData = await response.Content.ReadFromJsonAsync<earthquakeData>();
 
             // Earthquake locations and magnitude
             List<string> formattedStrings = new List<string>();
@@ -28,7 +28,7 @@ public class FeatureCollection
             {
                 // Format the output string using 'place' and  'mag'
                 string formattedString = $"{feature.Properties.Place} - Mag {feature.Properties.Mag}";
-                formattedString.Add(formattedString);
+                formattedStrings.Add(formattedString);
             }
 
             // join all the formatted string into a single output
@@ -40,20 +40,14 @@ public class FeatureCollection
             return "[]";
         }
     }
-
-    private int EarthquakeData()
-    {
-        throw new NotImplementedException();
-    }
 }
-
-public class EarthquakeData
+public class earthquakeData
 {
-    public List<FeatureCollection> Features { get; set; }
-
+    public List<Feature> Features { get; set; }
 }
 
-public class Features
+
+public class Feature
 {
     public Properties Properties { get; set; }
 }
