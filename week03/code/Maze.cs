@@ -23,13 +23,11 @@ public class Maze
     public Maze(Dictionary<ValueTuple<int, int>, bool[]> mazeMap)
     {
         _mazeMap = mazeMap;
-        _currX = 0; //initial the position of the player, start by (0,0) by default
-        _currY = 0;
+        _currX = 1; //initial the position of the player, start by (0,0) by default
+        _currY = 1;
     }
 
     // TODO Problem 4 - ADD YOUR CODE HERE
-
-
     /// <summary>
     /// Check to see if you can move left.  If you can, then move.  If you
     /// can't move, throw an InvalidOperationException with the message "Can't go that way!".
@@ -38,7 +36,7 @@ public class Maze
     public void MoveLeft()
     {
         // FILL IN CODE
-        if (_mazeMap.ContainsKey((_currX, _currY)) && _mazeMap[(_currX, _currY)][2])
+        if (_mazeMap.ContainsKey((_currX, _currY)) && _mazeMap[(_currX, _currY)][1])
         {
             _currX--; // move to left
         }
@@ -54,6 +52,15 @@ public class Maze
     public void MoveRight()
     {
         // FILL IN CODE
+        if (_mazeMap.ContainsKey((_currX, _currY)) && _mazeMap[(_currX, _currY)][2])
+        {
+            _currX--; // move to right
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way.");
+        }
+
     }
 
     /// <summary>
@@ -63,6 +70,14 @@ public class Maze
     public void MoveUp()
     {
         // FILL IN CODE
+        if (_mazeMap.ContainsKey((_currX, _currY)) && _mazeMap[(_currX, _currY)][3])
+        {
+            _currY--; // move up
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way.");
+        }
     }
 
     /// <summary>
@@ -72,6 +87,14 @@ public class Maze
     public void MoveDown()
     {
         // FILL IN CODE
+        if (_mazeMap.ContainsKey((_currX, _currY)) && _mazeMap[(_currX, _currY)][4])
+        {
+            _currY--; // move down 
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way.");
+        }
     }
 
     public string GetStatus()
