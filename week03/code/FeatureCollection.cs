@@ -34,9 +34,19 @@ public class FeatureCollection
             // join all the formatted string into a single output
             return $"[{string.Join(", ", formattedStrings)}]";
         }
+        catch (HttpRequestException httpEx)
+        {
+            Console.WriteLine($"Error fetching eartquake data: {httpEx.Message}");
+            return "[]";
+        }
+        catch (TaskCanceledException timeoutEx)
+        {
+            Console.WriteLine($"Error fetching earthquake data: The request timed out");
+            return "[]";
+        }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error fetching eartquake data: {The request timed out. Please try again later}");
+            Console.WriteLine($"Unexpected error occured: {ex.Message}");
             return "[]";
         }
     }
