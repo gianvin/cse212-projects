@@ -1,9 +1,11 @@
 using System.ComponentModel;
+using System.Linq.Expressions;
 using System.Text.Json;
 
 public static class SetsAndMaps
 {
     private static string reversedWord;
+    private static readonly object ex;
 
     /// <summary>
     /// The words parameter contains a list of two character 
@@ -84,11 +86,37 @@ public static class SetsAndMaps
         {
             var fields = line.Split(",");
             // TODO Problem 2 - ADD YOUR CODE HERE
+            if (fields.Length >= 4)
+            {
+                var degree = fields[3].Trim();
+
+                if (!string.IsNullOrEmpty(degree))
+                {
+                    if (degrees.ContainsKey(degree))
+                    {
+                        degrees[degree]++;
+                    }
+                    else
+                    {
+                        degrees[degree] = 1;
+                    }
+                }
+            }
         }
+
 
         return degrees;
     }
+    static void Main()
+    {
+        string filePath = "census.txt";
+        Dictionary<string, int> summary = SummarizeDegrees(filePath);
 
+        foreach (var entry in summary)
+        {
+            Console.WriteLine($"{entry.Key}: {entry.Value}");
+        }
+    }
     /// <summary>
     /// Determine if 'word1' and 'word2' are anagrams.  An anagram
     /// is when the same letters in a word are re-organized into a 
