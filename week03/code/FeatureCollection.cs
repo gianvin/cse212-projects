@@ -57,12 +57,4 @@ public class Properties
     public string Place { get; set; } // 'place' attribute for location
     public double Mag { get; set; } // 'mag' attribute for magnitude
 }
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        FeatureCollection featureCollection = new FeatureCollection();
-        string earthquakeSummary = await featureCollection.EarthquakeDailySummary();
-        Console.WriteLine(earthquakeSummary);
-    }
-}
+

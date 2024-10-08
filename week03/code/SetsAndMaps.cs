@@ -4,9 +4,6 @@ using System.Text.Json;
 
 public static class SetsAndMaps
 {
-    private static string reversedWord;
-    private static readonly object ex;
-
     /// <summary>
     /// The words parameter contains a list of two character 
     /// words (lower case, no duplicates). Using sets, find an O(n) 
@@ -38,6 +35,7 @@ public static class SetsAndMaps
             //Reverse the current word
             char[] charArray = word.ToCharArray();
             Array.Reverse(charArray);
+            string reversedWord = new string(charArray);
             // Check if the reversed word is already in the set
             if (wordSet.Contains(reversedWord))
             {
@@ -48,26 +46,14 @@ public static class SetsAndMaps
             else
             {
                 //if not found, add the current word to the set
-                wordSet.Add(word)
-;
+                wordSet.Add(word);
+                ;
             }
         }
         // return the pairs as an array of strings
         return pairs.ToArray();
     }
 
-    public static void Main(string[] args)
-    {
-        string[] words = { "am", "at", "ma", "if", "fi", "aa" };
-        //Find the symmetric pairs
-        string[] result = FindPairs(words);
-        //Print the result
-        foreach (string pair in result)
-        {
-            Console.WriteLine(pair);
-        }
-
-    }
     /// <summary>
     /// Read a census file and summarize the degrees (education)
     /// earned by those contained in the file.  The summary
@@ -107,16 +93,7 @@ public static class SetsAndMaps
 
         return degrees;
     }
-    static void Main()
-    {
-        string filePath = "census.txt";
-        Dictionary<string, int> summary = SummarizeDegrees(filePath);
 
-        foreach (var entry in summary)
-        {
-            Console.WriteLine($"{entry.Key}: {entry.Value}");
-        }
-    }
     /// <summary>
     /// Determine if 'word1' and 'word2' are anagrams.  An anagram
     /// is when the same letters in a word are re-organized into a 
@@ -160,7 +137,7 @@ public static class SetsAndMaps
             }
         }
 
-        return true; // the charcters match, the words are anagram
+        return true; // the characters match, the words are anagram
     }
 
 
