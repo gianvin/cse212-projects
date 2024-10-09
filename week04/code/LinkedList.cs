@@ -82,6 +82,24 @@ public class LinkedList : IEnumerable<int>
     public void RemoveTail()
     {
         // TODO Problem 2
+        if (_head == null)
+        {
+            return;
+
+        }
+        if (_head.Next == null)
+        {
+            _head = null;
+
+            return;
+        }
+        //Traverse the list to find the second-to-the last node
+        Node current = _head;
+        while (current.Next != null)
+        {
+            current = current.Next;
+        }
+        current.Next = null;
     }
 
     /// <summary>
