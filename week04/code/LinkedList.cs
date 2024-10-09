@@ -260,12 +260,13 @@ public class LinkedList : IEnumerable<int>
 
         Console.WriteLine("Link list");
         Console.WriteLine(list);
-        Console.WriteLine("Iterating through the list:");
+        Console.WriteLine("Reversed list:");
 
-        foreach (int value in list)
+        foreach (int value in list.Reverse())
         {
-            Console.Write(value + " ");
+            Console.Write(value + " ->");
         }
+        Console.WriteLine("null");
     }
 
     // Just for testing.
