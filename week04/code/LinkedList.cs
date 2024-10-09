@@ -36,15 +36,15 @@ public class LinkedList : IEnumerable<int>
         // Create new node
         Node newNode = new(value);
         // If the list is empty, then point both head and tail to the new node.
-        if (_head == null)
+        if (_tail == null)
         {
-            _head = newNode;
+            _tail = newNode;
 
         }
 
         else
         {
-            Node current = _head;
+            Node current = _tail;
             while (current.Next != null)
             {
                 current = current.Next;
@@ -83,20 +83,20 @@ public class LinkedList : IEnumerable<int>
     public void RemoveTail()
     {
         // TODO Problem 2
-        if (_head == null)
+        if (_tail == null)
         {
             Console.WriteLine("The list is empty. Nothing to remove.");
             return;
 
         }
-        if (_head.Next == null)
+        if (_tail.Next == null)
         {
-            _head = null;
+            _tail = null;
 
             return;
         }
         //Traverse the list to find the second-to-the last node
-        Node current = _head;
+        Node current = _tail;
         while (current.Next != null && current.Next.Next != null)
         {
             current = current.Next;
@@ -227,7 +227,7 @@ public class LinkedList : IEnumerable<int>
     public IEnumerable Reverse()
     {
         // TODO Problem 5
-        Node? current = _tail;
+        var current = _tail;
         while (current != null)
         {
             yield return current.Data;
