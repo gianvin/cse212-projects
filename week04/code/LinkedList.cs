@@ -170,7 +170,25 @@ public class LinkedList : IEnumerable<int>
     public void Replace(int oldValue, int newValue)
     {
         // TODO Problem 4
+        if (_head == null)
+        {
+            return;
+        }
+        //Traverse the list to find the node to be removed
+        Node current = _head;
+        while (current != null)
+        {
+            if (current.Data == oldValue)
+            {
+                current.Data = newValue;
+                return;
+            }
+            current = current.Next;
+        }
+
+
     }
+
 
     /// <summary>
     /// Yields all values in the linked list
