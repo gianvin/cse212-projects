@@ -238,6 +238,29 @@ public class LinkedList : IEnumerable<int>
         return _head is null && _tail is null;
     }
 
+    public static void Main(string[] args)
+    {
+        LinkedList list = new LinkedList();
+        list.InsertTail(5);
+        list.InsertTail(10);
+        list.InsertTail(15);
+        list.InsertTail(20);
+        list.InsertTail(25);
+        list.InsertTail(30);
+        list.InsertTail(35);
+        list.InsertTail(40);
+        list.InsertTail(45);
+
+        Console.WriteLine("Link list");
+        Console.WriteLine(list);
+        Console.WriteLine("Iterating through the list:");
+
+        foreach (int value in list)
+        {
+            Console.Write(value + " ");
+        }
+    }
+
     // Just for testing.
     public Boolean HeadAndTailAreNotNull()
     {
