@@ -97,7 +97,7 @@ public class LinkedList : IEnumerable<int>
         }
         //Traverse the list to find the second-to-the last node
         Node current = _head;
-        while (current.Next != null)
+        while (current.Next != null && current.Next.Next != null)
         {
             current = current.Next;
         }
