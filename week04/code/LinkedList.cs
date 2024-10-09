@@ -144,6 +144,24 @@ public class LinkedList : IEnumerable<int>
     public void Remove(int value)
     {
         // TODO Problem 3
+        if (_head == null)
+        {
+            return;
+        }
+
+        if (_head.Data == value)
+        {
+            _head = _head.Next;
+
+            return;
+        }
+        //Traverse the list to find the node to be removed
+        Node current = _head;
+        while (current.Next != null)
+        {
+            current.Next = current.Next.Next;
+            return;
+        }
     }
 
     /// <summary>
