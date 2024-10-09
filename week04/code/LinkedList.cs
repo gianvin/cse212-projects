@@ -49,6 +49,7 @@ public class LinkedList : IEnumerable<int>
             {
                 current = current.Next;
             }
+            current.Next = newNode;
         }
     }
 
@@ -84,6 +85,7 @@ public class LinkedList : IEnumerable<int>
         // TODO Problem 2
         if (_head == null)
         {
+            Console.WriteLine("The list is empty. Nothing to remove.");
             return;
 
         }
@@ -146,6 +148,7 @@ public class LinkedList : IEnumerable<int>
         // TODO Problem 3
         if (_head == null)
         {
+            Console.WriteLine("The list is empty. Nothing to remove.");
             return;
         }
 
@@ -159,9 +162,15 @@ public class LinkedList : IEnumerable<int>
         Node current = _head;
         while (current.Next != null)
         {
-            current.Next = current.Next.Next;
-            return;
+            if (current.Next.Data == value)
+            {
+                current.Next = current.Next.Next;
+
+                return;
+            }
+            current = current.Next;
         }
+        Console.WriteLine($"The value {value} not found in the list.");
     }
 
     /// <summary>
@@ -242,14 +251,12 @@ public class LinkedList : IEnumerable<int>
     {
         LinkedList list = new LinkedList();
         list.InsertTail(5);
-        list.InsertTail(10);
-        list.InsertTail(15);
-        list.InsertTail(20);
-        list.InsertTail(25);
-        list.InsertTail(30);
-        list.InsertTail(35);
-        list.InsertTail(40);
-        list.InsertTail(45);
+        list.InsertTail(4);
+        list.InsertTail(3);
+        list.InsertTail(2);
+        list.InsertTail(2);
+        list.InsertTail(2);
+        list.InsertTail(1);
 
         Console.WriteLine("Link list");
         Console.WriteLine(list);
