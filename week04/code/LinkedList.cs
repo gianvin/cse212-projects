@@ -62,18 +62,21 @@ public class LinkedList : IEnumerable<int>
         // If the list has only one item in it, then set head and tail 
         // to null resulting in an empty list.  This condition will also
         // cover an empty list.  Its okay to set to null again.
-        if (_head == _tail)
+        if (_head == null)
         {
-            _head = null;
-            _tail = null;
+            Console.WriteLine("The list empty. Nothing to remove.");
+
+            return;
         }
-        // If the list has more than one item in it, then only the head
+        // If there is only one node  in it, handle that case
         // will be affected.
-        else if (_head is not null)
+        if (_head.Next == null)
         {
-            _head.Next!.Prev = null; // Disconnect the second node from the first node
-            _head = _head.Next; // Update the head to point to the second node
+            _head = null; // Disconnect the second node from the first node
+
+            return; // Update the head to point to the second node
         }
+        _head = _head.Next;
     }
 
 
