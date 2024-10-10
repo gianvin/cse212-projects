@@ -247,27 +247,6 @@ public class LinkedList : IEnumerable<int>
         return _head is null && _tail is null;
     }
 
-    public static void Main(string[] args)
-    {
-        LinkedList list = new LinkedList();
-        list.InsertTail(5);
-        list.InsertTail(4);
-        list.InsertTail(3);
-        list.InsertTail(2);
-        list.InsertTail(2);
-        list.InsertTail(2);
-        list.InsertTail(1);
-
-        Console.WriteLine("Link list");
-        Console.WriteLine(list);
-        Console.WriteLine("Reversed list:");
-
-        foreach (int value in list.Reverse())
-        {
-            Console.Write(value + " ->");
-        }
-        Console.WriteLine("null");
-    }
 
     // Just for testing.
     public Boolean HeadAndTailAreNotNull()
