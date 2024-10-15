@@ -15,7 +15,11 @@ public static class Recursion
     public static int SumSquaresRecursive(int n)
     {
         // TODO Start Problem 1
-        return 0;
+        if (n == 1)
+        {
+            return 1;
+        }
+        return n + SumSquaresRecursive(n);
     }
 
     /// <summary>
@@ -40,6 +44,18 @@ public static class Recursion
     public static void PermutationsChoose(List<string> results, string letters, int size, string word = "")
     {
         // TODO Start Problem 2
+        if (word.Length == size)
+        {
+            results.Add(word);
+        }
+        else
+        {
+            for (var i = 0; i < letters.Length; i++)
+            {
+                var lettersLeft = letters.Remove(i, 1);
+                PermutationsChoose(results, lettersLeft, size, word + letters[i]);
+            }
+        }
     }
 
     /// <summary>
@@ -129,10 +145,11 @@ public static class Recursion
     {
         // If this is the first time running the function, then we need
         // to initialize the currPath list.
-        if (currPath == null) {
+        if (currPath == null)
+        {
             currPath = new List<ValueTuple<int, int>>();
         }
-        
+
         // currPath.Add((1,2)); // Use this syntax to add to the current path
 
         // TODO Start Problem 5
