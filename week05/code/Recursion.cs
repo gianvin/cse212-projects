@@ -113,9 +113,20 @@ public static class Recursion
             return 4;
 
         // TODO Start Problem 3
-
+        // code to initialize the dictionary
+        if (remember == null)
+        {
+            remember = new Dictionary<int, decimal>();
+        }
+        // Code to calculate if the result is stored in dictionary
+        if (remember.ContainsKey(s))
+        {
+            return remember[s];
+        }
         // Solve using recursion
         decimal ways = CountWaysToClimb(s - 1) + CountWaysToClimb(s - 2) + CountWaysToClimb(s - 3);
+
+        remember[s] = ways;
         return ways;
     }
 
