@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 
 public static class Recursion
 {
@@ -143,6 +144,57 @@ public static class Recursion
     public static void WildcardBinary(string pattern, List<string> results)
     {
         // TODO Start Problem 4
+        //base case if the pattern is empty
+        if (string.IsNullOrEmpty(pattern))
+        {
+            results.Add("");
+            return;
+        }
+
+        // base case if the pattern does not contain wild card '*'
+        if (!pattern.Contains('*'))
+        {
+            if (pattern.Length >= 3 && pattern.Length <= 6)
+            {
+                results.Add(pattern);
+            }
+            return;
+        }
+        // adjust the pattern Length base on the wildcard rule
+        string expandedPattern = ExpandedPattern(pattern);
+
+        if (expandedPattern.Length >= 3 && expandedPattern.Length <= 6)
+        {
+            results.Add(expandedPattern);
+        }
+    }
+
+    private static string ExpandedPattern(string pattern)
+    {
+        string result = pattern;
+
+        int starIndex = result.IndexOf('*');
+
+        while (starIndex != -1)
+        {
+            if (starIndex > 0)
+            {
+                char previousChar = result[starIndex - 1];
+
+                if (previousChar == '2' || previousChar == "3")
+                {
+                    string repeatedChar = new string(previousChar, 3);
+
+                    result = result[..(starIndex - 1)] + repeatedChar + result[(starIndex + 1)..];
+                }
+            }
+            else
+            {
+                result = result[(starIndex + 1)..];
+            }
+            starIndex = result.IndexOf('*');
+        }
+        return result;
     }
 
     /// <summary>
