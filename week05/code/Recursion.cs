@@ -114,10 +114,7 @@ public static class Recursion
 
         // TODO Start Problem 3
         // code to initialize the dictionary
-        if (remember == null)
-        {
-            remember = new Dictionary<int, decimal>();
-        }
+        remember ??= new Dictionary<int, decimal>();
         // Code to calculate if the result is stored in dictionary
         if (remember.ContainsKey(s))
         {
