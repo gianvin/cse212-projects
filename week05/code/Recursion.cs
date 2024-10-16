@@ -19,7 +19,7 @@ public static class Recursion
         {
             return 1;
         }
-        return n + SumSquaresRecursive(n);
+        return (n * n) + SumSquaresRecursive(n - 1);
     }
 
     /// <summary>
