@@ -44,11 +44,11 @@ public static class Recursion
     public static void PermutationsChoose(List<string> results, string letters, int size, string word = "")
     {
         // TODO Start Problem 2
-        if (word.Length == size)
+        if (word.Length > 0)
         {
             results.Add(word);
         }
-        else
+        if (word.Length < size)
         {
             for (var i = 0; i < letters.Length; i++)
             {
