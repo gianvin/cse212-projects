@@ -160,42 +160,56 @@ public static class Recursion
             }
             return;
         }
-        // adjust the pattern Length base on the wildcard rule
-        string expandedPattern = ExpandedPattern(pattern);
-
-        if (expandedPattern.Length >= 3 && expandedPattern.Length <= 6)
-        {
-            results.Add(expandedPattern);
-        }
+        ExpandWildcard(pattern, results);
     }
-
-    private static string ExpandedPattern(string pattern)
+    // code to recursively expand the wildcard(*) and generate the binary strings
+    private static void ExpandWildcard(string pattern, List<string> results)
     {
-        string result = pattern;
+        int starIndex = pattern.IndexOf('*');
 
-        int starIndex = result.IndexOf('*');
-
-        while (starIndex != -1)
+        if (starIndex == -1)
         {
-            if (starIndex > 0)
+            if (pattern.Length >= 3 && pattern.Length <= 6)
             {
-                char previousChar = result[starIndex - 1];
-
-                if (previousChar == '1' || previousChar == '0')
-                {
-                    string repeatedChar = new string(previousChar, 3);
-
-                    result = result[..(starIndex - 1)] + repeatedChar + result[(starIndex + 1)..];
-                }
+                results.Add(pattern);
             }
-            else
-            {
-                result = result[(starIndex + 1)..];
-            }
-            starIndex = result.IndexOf('*');
+            return;
         }
-        return result;
+        //expand by replacing wild card with 2 and recurse
+        string patternWith2 = pattern[..starIndex] + '2' + pattern[(starIndex + 1)..];
+        ExpandWildcard(patternWith2, results);
+
+        //expand by replacing wild card with 3 and recurse
+        string patternWith3 = pattern[..starIndex] + '3' + pattern[(starIndex + 1)..];
+        ExpandWildcard(patternWith3, results);
     }
+    static void Main(string[] args)
+    {
+        // Example patterns with wild cards
+        string pattern1 = "101*0"; // can represent 10101 and 10111
+        string pattern2 = "1**1"; // can represent 1111, 1101, 1011, 1001
+        string pattern3 = "100"; // No Wildcard, valid length
+        string pattern4 = "1*1"; // can represent 111 and 101
+        string pattern5 = ""; // empty string
+
+        // List for storing the results
+        List<string> results = new List<string>();
+
+        // Call the WildcardBinary function to process the patterns
+
+        WildcardBinary(pattern1, results); // expected result 10101 and 10111
+        WildcardBinary(pattern2, results); // expected result 1111, 1101, 1011, 1001
+        WildcardBinary(pattern3, results); // expected result  100
+        WildcardBinary(pattern4, results); // expected result 111, 101 
+        WildcardBinary(pattern5, results); // expected result ""
+
+        // output the results
+        foreach (var result in results)
+        {
+            Console.WriteLine($"Expanded pattern: {results}");
+        }
+    }
+
 
     /// <summary>
     /// Use recursion to insert all paths that start at (0,0) and end at the
