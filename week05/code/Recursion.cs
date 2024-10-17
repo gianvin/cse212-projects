@@ -181,7 +181,7 @@ public static class Recursion
             {
                 char previousChar = result[starIndex - 1];
 
-                if (previousChar == '2' || previousChar == "3")
+                if (previousChar == '1' || previousChar == '0')
                 {
                     string repeatedChar = new string(previousChar, 3);
 
