@@ -189,6 +189,8 @@ public static class Recursion
     /// Use recursion to insert all paths that start at (0,0) and end at the
     /// 'end' square into the results list.
     /// </summary>
+    /// 
+
     public static void SolveMaze(List<string> results, Maze maze, int x = 0, int y = 0, List<ValueTuple<int, int>>? currPath = null)
     {
         // If this is the first time running the function, then we need
@@ -200,16 +202,52 @@ public static class Recursion
 
         // currPath.Add((1,2)); // Use this syntax to add to the current path
         currPath.Add((1, 2));
+
         // TODO Start Problem 5
         // ADD CODE HERE
+
         if (maze.IsEnd(1, 2))
         {
-            string path = string.Join(" -> ", currPath);
+
             results.Add(currPath.AsString());
             currPath.RemoveAt(currPath.Count - 1);
             return;
         }
 
+        maze.Data[y * maze.Width + x] = 0;
+
+        // move down
+        if (maze.IsValidMove(currPath, x, y + 1))
+        {
+            SolveMaze(results, maze, x, y + 1, currPath);
+        }
+
+        // move right
+        if (maze.IsValidMove(currPath, x + 1, y))
+        {
+            SolveMaze(results, maze, x + 1, y, currPath);
+        }
+        // move up
+        if (maze.IsValidMove(currPath, x, y - 1))
+        {
+            SolveMaze(results, maze, x, y - 1, currPath);
+        }
+
+        // move left
+        if (maze.IsValidMove(currPath, x - 1, y))
+        {
+            SolveMaze(results, maze, x - 1, y, currPath);
+        }
+
+        maze.Data[y * maze.Width + x] = 1;
+
+        currPath.RemoveAt(currPath.Count - 1);
+
+
         // results.Add(currPath.AsString()); // Use this to add your path to the results array keeping track of complete maze solutions when you find the solution.
+
+
     }
+
+
 }
