@@ -1,12 +1,18 @@
 // DO NOT MODIFY THIS FILE
 
-public class Maze(int width, int height, int[] data)
+public class Maze
 {
-    public int Width { get; } = width;
-    public int Height { get; } = height;
-    public object? Grid { get; internal set; }
+    public int Width { get; }
+    public int Height { get; }
 
-    public readonly int[] Data = data;
+    public readonly int[] Data;
+
+    public Maze(int width, int height, int[] data)
+    {
+        this.Width = width;
+        this.Height = height;
+        this.Data = data;
+    }
 
     /// <summary>
     /// #############
