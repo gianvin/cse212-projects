@@ -199,17 +199,17 @@ public static class Recursion
         }
 
         // currPath.Add((1,2)); // Use this syntax to add to the current path
-        currPath.Add((x, y));
+        currPath.Add((1, 2));
         // TODO Start Problem 5
         // ADD CODE HERE
-        if (maze.IsEnd(x, y))
+        if (maze.IsEnd(1, 2))
         {
             string path = string.Join(" -> ", currPath);
-            results.Add(path);
+            results.Add(currPath.AsString());
             currPath.RemoveAt(currPath.Count - 1);
             return;
         }
-        currPath.RemoveAt(currPath.Count - 1);
+
         // results.Add(currPath.AsString()); // Use this to add your path to the results array keeping track of complete maze solutions when you find the solution.
     }
 }
