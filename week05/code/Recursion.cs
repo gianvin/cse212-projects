@@ -183,32 +183,6 @@ public static class Recursion
         string patternWith3 = pattern[..starIndex] + '3' + pattern[(starIndex + 1)..];
         ExpandWildcard(patternWith3, results);
     }
-    static void Main(string[] args)
-    {
-        // Example patterns with wild cards
-        string pattern1 = "101*0"; // can represent 10101 and 10111
-        string pattern2 = "1**1"; // can represent 1111, 1101, 1011, 1001
-        string pattern3 = "100"; // No Wildcard, valid length
-        string pattern4 = "1*1"; // can represent 111 and 101
-        string pattern5 = ""; // empty string
-
-        // List for storing the results
-        List<string> results = new List<string>();
-
-        // Call the WildcardBinary function to process the patterns
-
-        WildcardBinary(pattern1, results); // expected result 10101 and 10111
-        WildcardBinary(pattern2, results); // expected result 1111, 1101, 1011, 1001
-        WildcardBinary(pattern3, results); // expected result  100
-        WildcardBinary(pattern4, results); // expected result 111, 101 
-        WildcardBinary(pattern5, results); // expected result ""
-
-        // output the results
-        foreach (var result in results)
-        {
-            Console.WriteLine($"Expanded pattern: {results}");
-        }
-    }
 
 
     /// <summary>
@@ -225,9 +199,27 @@ public static class Recursion
         }
 
         // currPath.Add((1,2)); // Use this syntax to add to the current path
-
+        currPath.Add((1, 2));
         // TODO Start Problem 5
         // ADD CODE HERE
+        if (maze.IsEnd(1, 2))
+        {
+            // Use AsString Extension method to convert the current path to a string
+            results.Add(currPath.AsString());
+            currPath.RemoveAt(currPath.Count - 1);
+            return;
+        }
+
+
+
+
+        {
+            string path = string.Join(" -> ", currPath);
+            results.Add(path);
+            currPath.RemoveAt(currPath.Count - 1);
+            return;
+        }
+
 
         // results.Add(currPath.AsString()); // Use this to add your path to the results array keeping track of complete maze solutions when you find the solution.
     }

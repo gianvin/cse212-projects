@@ -4,6 +4,7 @@ public class Maze
 {
     public int Width { get; }
     public int Height { get; }
+    public object Grid { get; internal set; }
 
     public readonly int[] Data;
 
