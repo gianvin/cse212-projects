@@ -13,21 +13,30 @@ public class Node
     {
         // TODO Start Problem 1
 
+
         if (value < Data)
         {
             // Insert to the left
-            if (Left is null)
-                Left = new Node(value);
+            if (Left == null) // change is null to == nul
+            {
+                Left = new Node(value);// add braces to if else statement
+            }
             else
+            {
                 Left.Insert(value);
+            }
         }
-        else
+        else if (value > Data)
         {
             // Insert to the right
-            if (Right is null)
-                Right = new Node(value);
+            if (Right == null)// change is null to == to null
+            {
+                Right = new Node(value);// add braces to the if else statement
+            }
             else
+            {
                 Right.Insert(value);
+            }
         }
     }
 
