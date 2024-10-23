@@ -4,6 +4,8 @@ public class Node
     public Node? Right { get; private set; }
     public Node? Left { get; private set; }
 
+    public Node? Root { get; private set; }
+
     public Node(int data)
     {
         this.Data = data;
@@ -12,7 +14,14 @@ public class Node
     public void Insert(int value)
     {
         // TODO Start Problem 1
-
+        if (Root == null)
+        {
+            Root = new Node(value);
+        }
+        else
+        {
+            Root.Insert(value);
+        }
 
         if (value < Data)
         {
@@ -69,21 +78,4 @@ public class Node
         return 1 + Math.Max(leftHeight, rightHeight); // Replace this line with the correct return statement(s) // get the height of the current node which is 1  + the maximum height of left and right subtrees
     }
 
-    public static void TreeReverse(Node? node)
-
-    {
-        if (node == null)  // Base case
-        {
-            return;
-        }
-
-        // swap the left and right children
-        Node? temp = node.Left;
-        node.Left = node.Right;
-        node.Right = temp;
-
-        // Recursively call the method on left and right children
-        TreeReverse(node.Left);
-        TreeReverse(node.Right);
-    }
 }

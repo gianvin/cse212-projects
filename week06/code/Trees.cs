@@ -1,3 +1,7 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Design.Serialization;
+using System.Windows.Markup;
+
 public static class Trees
 {
     /// <summary>
@@ -9,11 +13,33 @@ public static class Trees
     /// a range (first to last) to consider.  For the first call, the full range of 0 to
     /// Length-1 used.
     /// </summary>
+    public static Node? Root { get; private set; }
+
     public static BinarySearchTree CreateTreeFromSortedList(int[] sortedNumbers)
     {
         var bst = new BinarySearchTree(); // Create an empty BST to start with 
         InsertMiddle(sortedNumbers, 0, sortedNumbers.Length - 1, bst);
         return bst;
+
+    }
+
+
+    public static IEnumerable<int> Reversed()
+    {
+        Stack<int> stack = new Stack<int>();
+        ReversedTree(Root, stack);
+        return stack;
+    }
+    private static void ReversedTree(Node? node, Stack<int> stack)
+    {
+        if (node == null)
+        {
+            return;
+        }
+
+        ReversedTree(node.Right, stack);
+        stack.Push(node.Data);
+        ReversedTree(node.Left, stack);
     }
 
     /// <summary>
@@ -59,5 +85,21 @@ public static class Trees
 
         InsertMiddle(sortedNumbers, first, middle - 1, bst);
         InsertMiddle(sortedNumbers, middle + 1, last, bst);
+    }
+}
+public class Program
+{
+    public static void Main()
+    {
+        int[] sortedNumbers = { 10, 20, 30, 40, 50, 60, 70 };
+
+        BinarySearchTree bst = Trees.CreateTreeFromSortedList(sortedNumbers);
+
+        Console.WriteLine("Values of the tree in revered order:");
+
+        foreach (var value in bst.Reverse())
+        {
+            Console.WriteLine(value);
+        }
     }
 }
