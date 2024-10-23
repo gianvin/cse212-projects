@@ -68,4 +68,22 @@ public class Node
         int rightHeight = Right?.GetHeight() ?? -1; // code to get the height of the right subtree
         return 1 + Math.Max(leftHeight, rightHeight); // Replace this line with the correct return statement(s) // get the height of the current node which is 1  + the maximum height of left and right subtrees
     }
+
+    public static void TreeReverse(Node? node)
+
+    {
+        if (node == null)  // Base case
+        {
+            return;
+        }
+
+        // swap the left and right children
+        Node? temp = node.Left;
+        node.Left = node.Right;
+        node.Right = temp;
+
+        // Recursively call the method on left and right children
+        TreeReverse(node.Left);
+        TreeReverse(node.Right);
+    }
 }
