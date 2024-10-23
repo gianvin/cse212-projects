@@ -3,9 +3,6 @@ public class Node
     public int Data { get; set; }
     public Node? Right { get; private set; }
     public Node? Left { get; private set; }
-
-    public Node? Root { get; private set; }
-
     public Node(int data)
     {
         this.Data = data;
@@ -14,15 +11,6 @@ public class Node
     public void Insert(int value)
     {
         // TODO Start Problem 1
-        if (Root == null)
-        {
-            Root = new Node(value);
-        }
-        else
-        {
-            Root.Insert(value);
-        }
-
         if (value < Data)
         {
             // Insert to the left
