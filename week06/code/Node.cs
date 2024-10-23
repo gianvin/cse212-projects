@@ -43,7 +43,22 @@ public class Node
     public bool Contains(int value)
     {
         // TODO Start Problem 2
-        return false;
+        if (value == Data)
+        {
+            return true; // the value matched the current node's data
+        }
+        else if (value < Data && Left != null)
+        {
+            return Left.Contains(value);// search the left sub tree
+        }
+        else if (value > Data && Right != null)
+        {
+            return Right.Contains(value); // search the right sub tree
+        }
+        else
+        {
+            return false; // value is not found
+        }
     }
 
     public int GetHeight()
